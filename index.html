@@ -347,62 +347,269 @@
 // ============================================================
 
 const PROJECT = {
-  name: "Authentic Detail",
-  address: "5000 Plaza on the Lake, Suite 100-405, Austin, TX 78746",
-  contract: 492594.66,
-  retainage: 0.10,
-  // Last updated timestamp ‚Äî ROOFER should set this when syncing
-  lastUpdated: "2026-03-27T12:00:00",
-  source: "manual" // "manual" or "jobtread"
+  "name": "Authentic Details",
+  "address": "5108 Balcones Woods Dr, Austin, TX 78759, USA",
+  "contract": 492594.66,
+  "retainage": 0.1,
+  "lastUpdated": "2026-03-27T18:16:51Z",
+  "source": "jobtread"
 };
 
 const PHASES = {
-  preCon:   { label: "Pre-Construction",   color: "#6b7280" },
-  site:     { label: "Site Work",          color: "#f59e0b" },
-  found:    { label: "Foundation",         color: "#3b82f6" },
-  struct:   { label: "Structure",          color: "#14b8a6" },
-  frame:    { label: "Framing & Enclosure",color: "#22c55e" },
-  mep:      { label: "MEP Rough-In",       color: "#ef4444" },
-  interior: { label: "Interior Finish",    color: "#a855f7" },
-  close:    { label: "Closeout",           color: "#eab308" }
+  "preCon": {
+    "label": "Pre-Construction",
+    "color": "#6b7280"
+  },
+  "site": {
+    "label": "Site Work",
+    "color": "#f59e0b"
+  },
+  "found": {
+    "label": "Foundation",
+    "color": "#3b82f6"
+  },
+  "struct": {
+    "label": "Structure",
+    "color": "#14b8a6"
+  },
+  "frame": {
+    "label": "Framing & Enclosure",
+    "color": "#22c55e"
+  },
+  "mep": {
+    "label": "MEP Rough-In",
+    "color": "#ef4444"
+  },
+  "interior": {
+    "label": "Interior Finish",
+    "color": "#a855f7"
+  },
+  "close": {
+    "label": "Closeout",
+    "color": "#eab308"
+  }
 };
 
 const TASKS = [
-  { id: 1,  name: "Fabrication of building",               start: "2026-03-20", duration: 92, phase: "preCon" },
-  { id: 2,  name: "Demo car wash",                         start: "2026-05-18", duration: 8,  phase: "site" },
-  { id: 3,  name: "Have survey done for lot & building",   start: "2026-05-21", duration: 1,  phase: "site" },
-  { id: 4,  name: "Excavate new footing & place rebar",    start: "2026-05-22", duration: 26, phase: "site" },
-  { id: 5,  name: "Trenching for electrical",              start: "2026-05-26", duration: 8,  phase: "site" },
-  { id: 6,  name: "Trenching for plumbing",                start: "2026-05-28", duration: 10, phase: "site" },
-  { id: 7,  name: "Pour concrete with bolts",              start: "2026-06-17", duration: 1,  phase: "found" },
-  { id: 8,  name: "Erect the building",                    start: "2026-06-22", duration: 25, phase: "struct" },
-  { id: 9,  name: "Setting of bay doors",                  start: "2026-07-17", duration: 14, phase: "struct" },
-  { id: 10, name: "Man doors/windows",                     start: "2026-07-20", duration: 8,  phase: "struct" },
-  { id: 11, name: "Framing walls",                         start: "2026-07-20", duration: 30, phase: "frame" },
-  { id: 12, name: "Hang lights, bay",                      start: "2026-07-31", duration: 15, phase: "frame" },
-  { id: 13, name: "Rough in plumbing at bathroom",         start: "2026-08-19", duration: 8,  phase: "mep" },
-  { id: 14, name: "Rough in mechanical, office & bath",    start: "2026-08-20", duration: 16, phase: "mep" },
-  { id: 15, name: "Rough in electrical at the office",     start: "2026-08-19", duration: 18, phase: "mep" },
-  { id: 16, name: "Inspections of all MEP rough in",       start: "2026-09-07", duration: 1,  phase: "mep" },
-  { id: 17, name: "Sheetrock office & framing",            start: "2026-09-08", duration: 4,  phase: "interior" },
-  { id: 18, name: "Set HVAC equipment & bay ductwork",     start: "2026-09-10", duration: 22, phase: "interior" },
-  { id: 19, name: "Tape, top, and finish gypboard",        start: "2026-09-10", duration: 7,  phase: "interior" },
-  { id: 20, name: "Paint office area",                     start: "2026-09-17", duration: 5,  phase: "interior" },
-  { id: 21, name: "Set finish MEP trim out",               start: "2026-09-23", duration: 5,  phase: "interior" },
-  { id: 22, name: "Flooring, office",                      start: "2026-09-28", duration: 1,  phase: "interior" },
-  { id: 23, name: "Equipment startup",                     start: "2026-09-28", duration: 4,  phase: "close" },
-  { id: 24, name: "Fire marshal / occupancy",              start: "2026-10-02", duration: 1,  phase: "close" }
+  {
+    "id": "22PU76zqS62z",
+    "name": "Fabrication of bldg",
+    "start": "2026-03-20",
+    "duration": 91,
+    "phase": "preCon"
+  },
+  {
+    "id": "22PU778zmAtM",
+    "name": "Demo car wash",
+    "start": "2026-05-18",
+    "duration": 7,
+    "phase": "site"
+  },
+  {
+    "id": "22PUPkBEhEud",
+    "name": "Have Survey done for lot & bldg corners",
+    "start": "2026-05-21",
+    "duration": 1,
+    "phase": "site"
+  },
+  {
+    "id": "22PUPqVAxGEx",
+    "name": "Excavate new footing & place rebar and AB's",
+    "start": "2026-05-22",
+    "duration": 25,
+    "phase": "site"
+  },
+  {
+    "id": "22PUPv3kfqkJ",
+    "name": "Trenching for Electrical",
+    "start": "2026-05-26",
+    "duration": 7,
+    "phase": "site"
+  },
+  {
+    "id": "22PUPvDpNyYt",
+    "name": "Trenching for Plumbing",
+    "start": "2026-05-28",
+    "duration": 9,
+    "phase": "site"
+  },
+  {
+    "id": "22PU77DGHZGu",
+    "name": "Pour concrete with bolts",
+    "start": "2026-06-17",
+    "duration": 1,
+    "phase": "found"
+  },
+  {
+    "id": "22PUPgiS7HzT",
+    "name": "Erect the building",
+    "start": "2026-06-22",
+    "duration": 24,
+    "phase": "struct"
+  },
+  {
+    "id": "22PUPuG36Srz",
+    "name": "Setting of Bay Doors",
+    "start": "2026-07-17",
+    "duration": 13,
+    "phase": "struct"
+  },
+  {
+    "id": "22PUPuKtzWTr",
+    "name": "Framing Walls",
+    "start": "2026-07-20",
+    "duration": 29,
+    "phase": "frame"
+  },
+  {
+    "id": "22PUPuJExwwJ",
+    "name": "Man Doors/Windows",
+    "start": "2026-07-20",
+    "duration": 7,
+    "phase": "struct"
+  },
+  {
+    "id": "22PUPumYG45k",
+    "name": "Hang Lights, Bay",
+    "start": "2026-07-31",
+    "duration": 14,
+    "phase": "frame"
+  },
+  {
+    "id": "22PUSjCyRWny",
+    "name": "Rough in Electrical at the office area",
+    "start": "2026-08-19",
+    "duration": 17,
+    "phase": "mep"
+  },
+  {
+    "id": "22PUSjQdxzw5",
+    "name": "Rough in plumbing at bathroom and breakarea.",
+    "start": "2026-08-19",
+    "duration": 7,
+    "phase": "mep"
+  },
+  {
+    "id": "22PUPvQYiUnU",
+    "name": "Rough in Mechanical, Office & Bays",
+    "start": "2026-08-20",
+    "duration": 15,
+    "phase": "mep"
+  },
+  {
+    "id": "22PUSjaEiN5R",
+    "name": "Inspections of all MEP rough in",
+    "start": "2026-09-07",
+    "duration": 1,
+    "phase": "mep"
+  },
+  {
+    "id": "22PUPvUnDnHk",
+    "name": "Sheetrock Office & Framing",
+    "start": "2026-09-08",
+    "duration": 3,
+    "phase": "interior"
+  },
+  {
+    "id": "22PUSka73Lvi",
+    "name": "Set HVAC equipment & bay ductwork",
+    "start": "2026-09-10",
+    "duration": 21,
+    "phase": "interior"
+  },
+  {
+    "id": "22PUSk6RBVqi",
+    "name": "Tape Top and Finsh gypboard",
+    "start": "2026-09-10",
+    "duration": 6,
+    "phase": "interior"
+  },
+  {
+    "id": "22PUSkDw6jm2",
+    "name": "Paint office area",
+    "start": "2026-09-17",
+    "duration": 4,
+    "phase": "interior"
+  },
+  {
+    "id": "22PUPvayxSXf",
+    "name": "Set finish MEP trim out",
+    "start": "2026-09-23",
+    "duration": 4,
+    "phase": "interior"
+  },
+  {
+    "id": "22PUPwSYMfJ4",
+    "name": "Equipment Startup",
+    "start": "2026-09-28",
+    "duration": 3,
+    "phase": "close"
+  },
+  {
+    "id": "22PUPvtxryaL",
+    "name": "Flooring, Office",
+    "start": "2026-09-28",
+    "duration": 1,
+    "phase": "interior"
+  },
+  {
+    "id": "22PUPxYke3iZ",
+    "name": "Fire Marshall / Occupancy",
+    "start": "2026-10-02",
+    "duration": 1,
+    "phase": "close"
+  }
 ];
 
 const DRAWS = [
-  { number: 1, amount: 20756.94,  date: "2026-03-30", description: "Metal Building Package Deposit" },
-  { number: 2, amount: 44000.00,  date: "2026-05-11", description: "Site Prep & Utility Deposits" },
-  { number: 3, amount: 99640.25,  date: "2026-06-12", description: "Foundation & Building Package" },
-  { number: 4, amount: 118051.67, date: "2026-07-10", description: "Erection & Enclosure" },
-  { number: 5, amount: 122449.99, date: "2026-08-21", description: "MEP Rough-In & Framing" },
-  { number: 6, amount: 79739.50,  date: "2026-09-18", description: "MEP Finish & Insulation" },
-  { number: 7, amount: 7956.31,   date: "2026-10-02", description: "Final Completion & Punchlist" },
-  { number: 8, amount: 49259.47,  date: "2026-11-01", description: "Retainage Release" }
+  {
+    "number": 1,
+    "amount": 20756.94,
+    "date": "2026-03-30",
+    "description": "Metal Building Package Deposit"
+  },
+  {
+    "number": 2,
+    "amount": 44000,
+    "date": "2026-05-11",
+    "description": "Site Prep & Utility Deposits"
+  },
+  {
+    "number": 3,
+    "amount": 99640.25,
+    "date": "2026-06-12",
+    "description": "Foundation & Building Package"
+  },
+  {
+    "number": 4,
+    "amount": 118051.67,
+    "date": "2026-07-10",
+    "description": "Erection & Enclosure"
+  },
+  {
+    "number": 5,
+    "amount": 122449.99,
+    "date": "2026-08-21",
+    "description": "MEP Rough-In & Framing"
+  },
+  {
+    "number": 6,
+    "amount": 79739.5,
+    "date": "2026-09-18",
+    "description": "MEP Finish & Insulation"
+  },
+  {
+    "number": 7,
+    "amount": 7956.31,
+    "date": "2026-10-02",
+    "description": "Final Completion & Punchlist"
+  },
+  {
+    "number": 8,
+    "amount": 49259.47,
+    "date": "2026-11-01",
+    "description": "Retainage Release"
+  }
 ];
 
 // ============================================================
