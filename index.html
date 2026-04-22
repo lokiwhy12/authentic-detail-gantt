@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Authentic Detail ‚Äî Construction Gantt</title>
+<title>Authentic Detail — Construction Gantt</title>
 <style>
   :root {
     --bg: #0f1117;
@@ -31,31 +31,48 @@
     border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    gap: 20px;
     background: var(--surface);
     z-index: 100;
     position: relative;
+  }
+
+  .header-main {
+    min-width: 0;
+    flex: 1;
   }
 
   .header h1 {
     font-size: 18px;
     font-weight: 600;
     letter-spacing: -0.3px;
+    line-height: 1.25;
   }
 
   .header h1 span {
+    display: block;
     color: var(--text-muted);
     font-weight: 400;
     font-size: 13px;
-    margin-left: 12px;
+    margin-top: 6px;
+  }
+
+  .header-sync {
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--text-muted);
   }
 
   .header-right {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 16px;
     font-size: 12px;
     color: var(--text-muted);
+    max-width: 48%;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   .legend {
@@ -85,12 +102,13 @@
   }
 
   .task-list {
-    min-width: 280px;
-    max-width: 280px;
+    min-width: 340px;
+    max-width: 340px;
     border-right: 1px solid var(--border);
     overflow-y: auto;
     background: var(--surface);
     flex-shrink: 0;
+    padding-bottom: 48px;
   }
 
   .task-list-header {
@@ -110,13 +128,12 @@
   .task-row-label {
     padding: 0 16px;
     height: 36px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
     align-items: center;
+    gap: 10px;
     font-size: 12px;
     border-bottom: 1px solid var(--border);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     cursor: default;
   }
 
@@ -126,15 +143,27 @@
 
   .task-number {
     color: var(--text-muted);
-    margin-right: 8px;
     font-size: 10px;
-    min-width: 18px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .task-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
   }
 
   .chart-area {
     flex: 1;
     overflow: auto;
     position: relative;
+    padding-bottom: 48px;
   }
 
   .chart-inner {
@@ -321,6 +350,43 @@
     color: var(--text);
   }
 
+  @media (max-width: 900px) {
+    .header {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .header-right {
+      max-width: 100%;
+      width: 100%;
+      justify-content: flex-start;
+    }
+
+    .task-list {
+      min-width: 260px;
+      max-width: 260px;
+    }
+
+    .task-row-label {
+      grid-template-columns: 64px minmax(0, 1fr);
+      gap: 8px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .header {
+      padding: 14px 16px;
+    }
+
+    .legend {
+      gap: 8px;
+    }
+
+    .legend-item {
+      font-size: 10px;
+    }
+  }
+
   /* Scrollbar */
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
@@ -334,7 +400,7 @@
 
 <script>
 // ============================================================
-// AUTHENTIC DETAIL ‚Äî GANTT DATA
+// AUTHENTIC DETAIL — GANTT DATA
 // ============================================================
 // ROOFER: Replace this block with JobTread data.
 // Schema contract:
@@ -613,7 +679,7 @@ const DRAWS = [
 ];
 
 // ============================================================
-// END DATA BLOCK ‚Äî chart rendering below
+// END DATA BLOCK — chart rendering below
 // ============================================================
 
 const DAY_WIDTH = 8;
@@ -669,10 +735,12 @@ function render() {
   const header = document.createElement('div');
   header.className = 'header';
   header.innerHTML = `
-    <h1>${PROJECT.name}<span>${PROJECT.address}</span></h1>
+    <div class="header-main">
+      <h1>${PROJECT.name}<span>${PROJECT.address}</span></h1>
+      <div class="header-sync">${PROJECT.source === 'jobtread' ? 'JobTread sync' : 'Manual update'} &bull; ${new Date(PROJECT.lastUpdated).toLocaleDateString()}</div>
+    </div>
     <div class="header-right">
       <div class="legend" id="legend"></div>
-      <div style="font-size:10px;opacity:0.5">${PROJECT.source === 'jobtread' ? 'JobTread sync' : 'Manual'} ¬∑ ${new Date(PROJECT.lastUpdated).toLocaleDateString()}</div>
     </div>
   `;
   document.body.prepend(header);
@@ -709,7 +777,9 @@ function render() {
   TASKS.forEach(t => {
     const row = document.createElement('div');
     row.className = 'task-row-label';
-    row.innerHTML = `<span class="task-number">${t.id}</span><span style="color:${PHASES[t.phase].color}">${t.name}</span>`;
+    const shortId = t.id.length > 8 ? `…${t.id.slice(-6)}` : t.id;
+    row.title = `${t.id} — ${t.name}`;
+    row.innerHTML = `<span class="task-number" title="${t.id}">${shortId}</span><span class="task-name" style="color:${PHASES[t.phase].color}" title="${t.name}">${t.name}</span>`;
     taskList.appendChild(row);
   });
   container.appendChild(taskList);
@@ -879,7 +949,7 @@ function render() {
   totalBar.className = 'total-bar';
   const cumDrawn = DRAWS.reduce((a, d) => a + d.amount, 0);
   totalBar.innerHTML = `
-    <span>Contract: <strong>${formatMoney(PROJECT.contract)}</strong> ¬∑ Retainage: <strong>${(PROJECT.retainage * 100).toFixed(0)}%</strong></span>
+    <span>Contract: <strong>${formatMoney(PROJECT.contract)}</strong> &bull; Retainage: <strong>${(PROJECT.retainage * 100).toFixed(0)}%</strong></span>
     <span>Total Draws: <strong>${formatMoney(cumDrawn)}</strong> across <strong>${DRAWS.length}</strong> draws</span>
   `;
   document.body.appendChild(totalBar);
