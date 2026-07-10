@@ -727,6 +727,13 @@ const DRAWS = [
 // END DATA BLOCK — chart rendering below
 // ============================================================
 
+// Draws are temporarily hidden pending re-derivation against the rescheduled
+// (JobTread) construction timeline. Flip to true to re-enable the draw
+// lines/diamonds — the DRAWS data above is preserved either way.
+// NOTE: this flag lives OUTSIDE the data block ROOFER rewrites, so the nightly
+// JobTread sync will not reset it.
+const SHOW_DRAWS = false;
+
 const DAY_WIDTH = 8;
 const ROW_HEIGHT = 36;
 const HEADER_HEIGHT = 48;
@@ -756,7 +763,7 @@ const allEnds = TASKS.map(t => {
   s.setDate(s.getDate() + t.duration);
   return s;
 });
-DRAWS.forEach(d => {
+if (SHOW_DRAWS) DRAWS.forEach(d => {
   allDates.push(parseDate(d.date));
   allEnds.push(parseDate(d.date));
 });
@@ -801,10 +808,12 @@ function render() {
     }
   }
   // Draw legend item
-  const drawLeg = document.createElement('div');
-  drawLeg.className = 'legend-item';
-  drawLeg.innerHTML = `<div class="legend-swatch" style="background:#ffd700"></div>Draw`;
-  legendEl.appendChild(drawLeg);
+  if (SHOW_DRAWS) {
+    const drawLeg = document.createElement('div');
+    drawLeg.className = 'legend-item';
+    drawLeg.innerHTML = `<div class="legend-swatch" style="background:#ffd700"></div>Draw`;
+    legendEl.appendChild(drawLeg);
+  }
 
   // Container
   const container = document.createElement('div');
@@ -907,7 +916,7 @@ function render() {
   }
 
   // Draw lines
-  DRAWS.forEach(d => {
+  if (SHOW_DRAWS) DRAWS.forEach(d => {
     const x = dayToX(parseDate(d.date));
     const line = document.createElement('div');
     line.className = 'draw-line';
@@ -946,7 +955,7 @@ function render() {
 
     // Find which draw this task starts in
     let drawInfo = '';
-    for (let di = DRAWS.length - 1; di >= 0; di--) {
+    if (SHOW_DRAWS) for (let di = DRAWS.length - 1; di >= 0; di--) {
       if (parseDate(DRAWS[di].date) <= startDate) {
         drawInfo = `Draw ${DRAWS[di].number}: ${DRAWS[di].description}`;
         break;
@@ -995,7 +1004,7 @@ function render() {
   const cumDrawn = DRAWS.reduce((a, d) => a + d.amount, 0);
   totalBar.innerHTML = `
     <span>Contract: <strong>${formatMoney(PROJECT.contract)}</strong> &bull; Retainage: <strong>${(PROJECT.retainage * 100).toFixed(0)}%</strong></span>
-    <span>Total Draws: <strong>${formatMoney(cumDrawn)}</strong> across <strong>${DRAWS.length}</strong> draws</span>
+    ${SHOW_DRAWS ? `<span>Total Draws: <strong>${formatMoney(cumDrawn)}</strong> across <strong>${DRAWS.length}</strong> draws</span>` : ''}
   `;
   document.body.appendChild(totalBar);
 
