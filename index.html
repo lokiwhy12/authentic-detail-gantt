@@ -24,6 +24,8 @@
     color: var(--text);
     overflow: hidden;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
   .header {
@@ -36,6 +38,7 @@
     background: var(--surface);
     z-index: 100;
     position: relative;
+    flex: 0 0 auto;
   }
 
   .header-main {
@@ -97,7 +100,8 @@
 
   .container {
     display: flex;
-    height: calc(100vh - 57px);
+    flex: 1 1 auto;
+    min-height: 0;
     overflow: hidden;
   }
 
@@ -112,7 +116,10 @@
   }
 
   .task-list-header {
-    padding: 10px 16px;
+    padding: 0 16px;
+    height: 46px;
+    display: flex;
+    align-items: center;
     font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
@@ -179,8 +186,14 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .month-row, .week-row {
+  .month-row {
     display: flex;
+    height: 27px;
+  }
+
+  .week-row {
+    display: flex;
+    height: 18px;
   }
 
   .month-cell {
@@ -864,6 +877,7 @@ function render() {
   timelineHeader.appendChild(weekRow);
 
   // Build months
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   let cursor = new Date(timelineStart);
   while (cursor <= timelineEnd) {
     const monthStart = new Date(cursor);
@@ -873,27 +887,32 @@ function render() {
     const cell = document.createElement('div');
     cell.className = 'month-cell';
     cell.style.width = (days * DAY_WIDTH) + 'px';
-    const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     cell.textContent = `${monthNames[cursor.getMonth()]} ${cursor.getFullYear()}`;
     monthRow.appendChild(cell);
-
-    // Weeks within this month
-    let weekCursor = new Date(monthStart);
-    while (weekCursor < endOfRange) {
-      const weekEnd = new Date(weekCursor);
-      weekEnd.setDate(weekEnd.getDate() + (7 - weekEnd.getDay()));
-      const actualEnd = weekEnd > endOfRange ? endOfRange : weekEnd;
-      const wDays = daysBetween(weekCursor, actualEnd);
-      if (wDays > 0) {
-        const wCell = document.createElement('div');
-        wCell.className = 'week-cell';
-        wCell.style.width = (wDays * DAY_WIDTH) + 'px';
-        wCell.textContent = `${weekCursor.getMonth() + 1}/${weekCursor.getDate()}`;
-        weekRow.appendChild(wCell);
-      }
-      weekCursor = new Date(actualEnd);
-    }
     cursor = nextMonth;
+  }
+
+  // Build weeks as a continuous 7-day ruler across the whole range. Previously the
+  // ruler was rebuilt per month, so each month began with a 1-6 day partial-week
+  // cell whose "M/D" label overflowed and collided with its neighbor. A single
+  // uninterrupted cadence keeps every cell a full 7 days (56px) except the final
+  // remainder, whose label is dropped if it's too narrow to fit.
+  let weekCursor = new Date(timelineStart);
+  while (weekCursor < timelineEnd) {
+    const weekEnd = new Date(weekCursor);
+    weekEnd.setDate(weekEnd.getDate() + 7);
+    const segEnd = weekEnd > timelineEnd ? timelineEnd : weekEnd;
+    const wDays = daysBetween(weekCursor, segEnd);
+    if (wDays > 0) {
+      const wCell = document.createElement('div');
+      wCell.className = 'week-cell';
+      wCell.style.width = (wDays * DAY_WIDTH) + 'px';
+      if (wDays * DAY_WIDTH >= 30) {
+        wCell.textContent = `${weekCursor.getMonth() + 1}/${weekCursor.getDate()}`;
+      }
+      weekRow.appendChild(wCell);
+    }
+    weekCursor = weekEnd;
   }
 
   // Chart body
