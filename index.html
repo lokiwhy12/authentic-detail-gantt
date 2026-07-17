@@ -136,7 +136,7 @@
     padding: 0 16px;
     height: 36px;
     display: grid;
-    grid-template-columns: 72px minmax(0, 1fr);
+    grid-template-columns: 28px minmax(0, 1fr);
     align-items: center;
     gap: 10px;
     font-size: 12px;
@@ -381,7 +381,7 @@
     }
 
     .task-row-label {
-      grid-template-columns: 64px minmax(0, 1fr);
+      grid-template-columns: 26px minmax(0, 1fr);
       gap: 8px;
     }
   }
@@ -405,6 +405,23 @@
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
   ::-webkit-scrollbar-thumb:hover { background: #444; }
+
+  /* Honor reduced-motion preference: drop transitions/animations */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+    .bar:hover { transform: none; }
+  }
+
+  /* On touch devices (no real hover), don't let hover states stick after a tap */
+  @media (hover: none) {
+    .bar:hover { filter: none; transform: none; }
+    .task-row-label:hover { background: transparent; }
+    .chart-row:hover { background: transparent; }
+    .draw-diamond:hover { filter: none; }
+  }
 </style>
 </head>
 <body>
@@ -841,12 +858,11 @@ function render() {
   tlHeader.className = 'task-list-header';
   tlHeader.textContent = 'Tasks';
   taskList.appendChild(tlHeader);
-  TASKS.forEach(t => {
+  TASKS.forEach((t, i) => {
     const row = document.createElement('div');
     row.className = 'task-row-label';
-    const shortId = t.id.length > 8 ? `…${t.id.slice(-6)}` : t.id;
-    row.title = `${t.id} — ${t.name}`;
-    row.innerHTML = `<span class="task-number" title="${t.id}">${shortId}</span><span class="task-name" style="color:${PHASES[t.phase].color}" title="${t.name}">${t.name}</span>`;
+    row.title = t.name;
+    row.innerHTML = `<span class="task-number">${i + 1}</span><span class="task-name" style="color:${PHASES[t.phase].color}" title="${t.name}">${t.name}</span>`;
     taskList.appendChild(row);
   });
   container.appendChild(taskList);
