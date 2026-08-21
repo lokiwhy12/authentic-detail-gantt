@@ -4,7 +4,7 @@
     "address": "5108 Balcones Woods Dr, Austin, TX 78759, USA",
     "contract": 492594.66,
     "retainage": 0.1,
-    "lastUpdated": "2026-08-21T17:00:31Z",
+    "lastUpdated": "2026-08-21T17:04:09Z",
     "source": "jobtread"
   },
   "PHASES": {
@@ -67,7 +67,7 @@
       "id": "22PU76zqS62z",
       "name": "Fabrication of bldg / delivery",
       "start": "2026-07-14",
-      "duration": 51,
+      "duration": 58,
       "phase": "preCon"
     },
     {
