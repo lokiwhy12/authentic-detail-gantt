@@ -67,6 +67,34 @@
     color: var(--text-muted);
   }
 
+  .zoom-ctl {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface2);
+    overflow: hidden;
+  }
+  .zoom-ctl button {
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1;
+    width: 28px;
+    height: 26px;
+    cursor: pointer;
+  }
+  .zoom-ctl button:hover { background: var(--border); }
+  .zoom-ctl span {
+    min-width: 42px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
   .header-right {
     display: flex;
     align-items: flex-start;
@@ -785,7 +813,11 @@ const DRAWS = [
 // JobTread sync will not reset it.
 const SHOW_DRAWS = false;
 
-const DAY_WIDTH = 8;
+const BASE_DAY_WIDTH = 8;
+const ZOOM_STEPS = [0.5, 0.75, 1, 1.5, 2, 3, 4];
+let zoom = 2; // default: twice the original width
+try { const z = parseFloat(localStorage.getItem('gantt-zoom')); if (ZOOM_STEPS.includes(z)) zoom = z; } catch (e) {}
+let DAY_WIDTH = BASE_DAY_WIDTH * zoom;
 const ROW_HEIGHT = 36;
 const HEADER_HEIGHT = 48;
 
@@ -826,14 +858,14 @@ const maxDate = new Date(Math.max(...allEnds));
 const timelineStart = new Date(minDate.getFullYear(), minDate.getMonth(), 1);
 const timelineEnd = new Date(maxDate.getFullYear(), maxDate.getMonth() + 2, 0);
 const totalDays = daysBetween(timelineStart, timelineEnd);
-const chartWidth = totalDays * DAY_WIDTH;
 
 function dayToX(date) {
   return daysBetween(timelineStart, date) * DAY_WIDTH;
 }
 
 // Build the DOM
-function render() {
+function render(centerDay) {
+  const chartWidth = totalDays * DAY_WIDTH;
   // Header
   const header = document.createElement('div');
   header.className = 'header';
@@ -844,6 +876,7 @@ function render() {
     </div>
     <div class="header-right">
       <div class="legend" id="legend"></div>
+      <div class="zoom-ctl"><button type="button" id="zoomOut" aria-label="Zoom out" title="Zoom out">&minus;</button><span id="zoomLabel">${Math.round(zoom * 100)}%</span><button type="button" id="zoomIn" aria-label="Zoom in" title="Zoom in">+</button></div>
     </div>
   `;
   document.body.prepend(header);
@@ -1075,11 +1108,29 @@ function render() {
     chartAreaEl.scrollTop = taskListEl.scrollTop;
   });
 
-  // Scroll to today on load
-  if (today >= timelineStart && today <= timelineEnd) {
+  // Keep the previous view center on zoom; scroll to today on first load
+  if (typeof centerDay === 'number') {
+    chartAreaEl.scrollLeft = Math.max(0, centerDay * DAY_WIDTH - chartAreaEl.clientWidth / 2);
+  } else if (today >= timelineStart && today <= timelineEnd) {
     const todayX = dayToX(today);
     chartAreaEl.scrollLeft = Math.max(0, todayX - 200);
   }
+
+  // Zoom wiring (header is rebuilt on each render)
+  header.querySelector('#zoomOut').addEventListener('click', () => stepZoom(-1));
+  header.querySelector('#zoomIn').addEventListener('click', () => stepZoom(1));
+}
+
+function stepZoom(dir) {
+  const i = ZOOM_STEPS.indexOf(zoom) + dir;
+  if (i < 0 || i >= ZOOM_STEPS.length) return;
+  const chartAreaEl = document.getElementById('chartArea');
+  const centerDay = (chartAreaEl.scrollLeft + chartAreaEl.clientWidth / 2) / DAY_WIDTH;
+  zoom = ZOOM_STEPS[i];
+  DAY_WIDTH = BASE_DAY_WIDTH * zoom;
+  try { localStorage.setItem('gantt-zoom', String(zoom)); } catch (e) {}
+  document.querySelectorAll('.header, .container, .total-bar').forEach(el => el.remove());
+  render(centerDay);
 }
 
 // Tooltip
