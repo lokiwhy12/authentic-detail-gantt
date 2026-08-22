@@ -240,6 +240,35 @@
     white-space: nowrap;
   }
 
+  .day-row {
+    display: flex;
+    height: 15px;
+  }
+
+  .day-cell {
+    flex: none;
+    font-size: 9px;
+    line-height: 15px;
+    text-align: center;
+    color: var(--text-muted);
+    border-right: 1px solid rgba(46, 51, 71, 0.55);
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  .day-cell.wknd {
+    background: rgba(255, 255, 255, 0.045);
+    color: #656a80;
+  }
+
+  .weekend-band {
+    position: absolute;
+    top: 0;
+    background: rgba(255, 255, 255, 0.03);
+    pointer-events: none;
+  }
+
   .chart-body {
     position: relative;
   }
@@ -831,8 +860,9 @@ function daysBetween(a, b) {
 }
 
 function formatDate(d) {
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+  return `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
 }
 
 function formatMoney(n) {
@@ -985,11 +1015,43 @@ function render(centerDay) {
     weekCursor = weekEnd;
   }
 
+  // Day-of-week row: letters from 150% zoom (12px/day), letter + date from 300% (24px)
+  if (DAY_WIDTH >= 12) {
+    const dayRow = document.createElement('div');
+    dayRow.className = 'day-row';
+    timelineHeader.appendChild(dayRow);
+    const letters = ['S','M','T','W','T','F','S'];
+    let dCur = new Date(timelineStart);
+    while (dCur < timelineEnd) {
+      const dow = dCur.getDay();
+      const cell = document.createElement('div');
+      cell.className = 'day-cell' + (dow === 0 || dow === 6 ? ' wknd' : '');
+      cell.style.width = DAY_WIDTH + 'px';
+      cell.textContent = DAY_WIDTH >= 24 ? letters[dow] + ' ' + dCur.getDate() : letters[dow];
+      dayRow.appendChild(cell);
+      dCur.setDate(dCur.getDate() + 1);
+    }
+  }
+
   // Chart body
   const chartBody = document.createElement('div');
   chartBody.className = 'chart-body';
   chartBody.style.width = chartWidth + 'px';
   chartInner.appendChild(chartBody);
+
+  // Weekend shading (Sat + Sun) at every zoom
+  let wknd = new Date(timelineStart);
+  while (wknd <= timelineEnd) {
+    if (wknd.getDay() === 6) {
+      const band = document.createElement('div');
+      band.className = 'weekend-band';
+      band.style.left = dayToX(wknd) + 'px';
+      band.style.width = (DAY_WIDTH * 2) + 'px';
+      band.style.height = (TASKS.length * ROW_HEIGHT) + 'px';
+      chartBody.appendChild(band);
+    }
+    wknd.setDate(wknd.getDate() + 1);
+  }
 
   // Grid lines (weekly)
   let gridCursor = new Date(timelineStart);
