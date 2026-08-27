@@ -145,7 +145,9 @@
 
   .task-list-header {
     padding: 0 16px;
-    height: 46px;
+    /* Fallback height; JS keeps this in exact sync with the timeline header
+       (month + week + day rows) so left rows stay aligned with the bars. */
+    height: 61px;
     display: flex;
     align-items: center;
     font-size: 11px;
@@ -1169,6 +1171,11 @@ function render(centerDay) {
   taskListEl.addEventListener('scroll', () => {
     chartAreaEl.scrollTop = taskListEl.scrollTop;
   });
+
+  // Keep the left "Tasks" header exactly as tall as the timeline header so the
+  // task rows stay aligned with the bars no matter how many header rows the
+  // timeline has (month / week / day). Auto-corrects on add/remove of a row.
+  tlHeader.style.height = timelineHeader.getBoundingClientRect().height + 'px';
 
   // Keep the previous view center on zoom; scroll to today on first load
   if (typeof centerDay === 'number') {
