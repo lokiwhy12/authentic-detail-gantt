@@ -1,0 +1,499 @@
+{
+  "syncedAt": "2026-09-11T16:59:45Z",
+  "syncedAtCT": "2026-09-11 (CT)",
+  "jobId": "22PKVUnhWnUJ",
+  "jobNumber": "329",
+  "organizationId": "22P5Skxs3gQK",
+  "project": {
+    "name": "Authentic Details",
+    "address": "5108 Balcones Woods Dr, Austin, TX 78759, USA",
+    "contract": 492594.66,
+    "retainage": 0.1,
+    "lastUpdated": "2026-09-11T16:59:45Z",
+    "source": "jobtread"
+  },
+  "phases": {
+    "preCon": {
+      "label": "Pre-Construction",
+      "color": "#6b7280"
+    },
+    "site": {
+      "label": "Site Work",
+      "color": "#f59e0b"
+    },
+    "found": {
+      "label": "Foundation",
+      "color": "#3b82f6"
+    },
+    "struct": {
+      "label": "Structure",
+      "color": "#14b8a6"
+    },
+    "frame": {
+      "label": "Framing & Enclosure",
+      "color": "#22c55e"
+    },
+    "mep": {
+      "label": "MEP Rough-In",
+      "color": "#ef4444"
+    },
+    "interior": {
+      "label": "Interior Finish",
+      "color": "#a855f7"
+    },
+    "close": {
+      "label": "Closeout",
+      "color": "#eab308"
+    }
+  },
+  "tasks": [
+    {
+      "id": "22PU778zmAtM",
+      "name": "Demo car wash",
+      "start": "2026-05-06",
+      "duration": 13,
+      "phase": "site"
+    },
+    {
+      "id": "22PWyKVMww5y",
+      "name": "Drawing Coordination (City)",
+      "start": "2026-05-18",
+      "duration": 52,
+      "phase": "preCon"
+    },
+    {
+      "id": "22PUPkBEhEud",
+      "name": "Have Survey done for lot & bldg corners",
+      "start": "2026-06-03",
+      "duration": 1,
+      "phase": "site"
+    },
+    {
+      "id": "22PU76zqS62z",
+      "name": "Fabrication of bldg / delivery",
+      "start": "2026-07-14",
+      "duration": 58,
+      "phase": "preCon"
+    },
+    {
+      "id": "22PadtuTsmXz",
+      "name": "Demo Slab",
+      "start": "2026-08-04",
+      "duration": 16,
+      "phase": "site"
+    },
+    {
+      "id": "22PaduWQHnWa",
+      "name": "Bldg Drawings Received",
+      "start": "2026-08-06",
+      "duration": 1,
+      "phase": "preCon"
+    },
+    {
+      "id": "22PUPqVAxGEx",
+      "name": "Excavate new footing & place rebar and AB's",
+      "start": "2026-09-03",
+      "duration": 34,
+      "phase": "site"
+    },
+    {
+      "id": "22PeLZ6rCRiE",
+      "name": "Geotech report",
+      "start": "2026-09-04",
+      "duration": 11,
+      "phase": "site"
+    },
+    {
+      "id": "22Pd85559xLs",
+      "name": "Recieve the building from Rino",
+      "start": "2026-09-10",
+      "duration": 1,
+      "phase": "struct"
+    },
+    {
+      "id": "22PeLZMyBXYT",
+      "name": "Structural Engi Mods",
+      "start": "2026-09-15",
+      "duration": 13,
+      "phase": "struct"
+    },
+    {
+      "id": "22PUPv3kfqkJ",
+      "name": "Stub up for Electrical",
+      "start": "2026-09-29",
+      "duration": 4,
+      "phase": "site"
+    },
+    {
+      "id": "22PUPvDpNyYt",
+      "name": "Trenching and setting floor drains",
+      "start": "2026-09-29",
+      "duration": 4,
+      "phase": "site"
+    },
+    {
+      "id": "22PeLZR435pU",
+      "name": "City Review of Mods",
+      "start": "2026-09-29",
+      "duration": 8,
+      "phase": "site"
+    },
+    {
+      "id": "22Pd7k2zgBrw",
+      "name": "Anchor Bolts Validated",
+      "start": "2026-10-07",
+      "duration": 1,
+      "phase": "found"
+    },
+    {
+      "id": "22PU77DGHZGu",
+      "name": "Pour concrete with bolts",
+      "start": "2026-10-08",
+      "duration": 1,
+      "phase": "found"
+    },
+    {
+      "id": "22Pd843qS8AA",
+      "name": "Verify AB's after pour",
+      "start": "2026-10-12",
+      "duration": 1,
+      "phase": "found"
+    },
+    {
+      "id": "22PUPgiS7HzT",
+      "name": "Erect the building",
+      "start": "2026-10-13",
+      "duration": 21,
+      "phase": "struct"
+    },
+    {
+      "id": "22PUPuG36Srz",
+      "name": "Setting of Bay Doors",
+      "start": "2026-11-04",
+      "duration": 7,
+      "phase": "struct"
+    },
+    {
+      "id": "22PUPuJExwwJ",
+      "name": "Man Doors/Windows",
+      "start": "2026-11-04",
+      "duration": 7,
+      "phase": "struct"
+    },
+    {
+      "id": "22PUPuKtzWTr",
+      "name": "Framing Walls",
+      "start": "2026-11-04",
+      "duration": 18,
+      "phase": "frame"
+    },
+    {
+      "id": "22PUPumYG45k",
+      "name": "Hang Lights, Bay",
+      "start": "2026-11-04",
+      "duration": 14,
+      "phase": "frame"
+    },
+    {
+      "id": "22PUPvQYiUnU",
+      "name": "Rough in Mechanical, Office & Bays",
+      "start": "2026-11-23",
+      "duration": 15,
+      "phase": "mep"
+    },
+    {
+      "id": "22PUSjCyRWny",
+      "name": "Rough in Electrical at the office area",
+      "start": "2026-11-23",
+      "duration": 12,
+      "phase": "mep"
+    },
+    {
+      "id": "22PUSjQdxzw5",
+      "name": "Rough in plumbing at bathroom and breakarea.",
+      "start": "2026-11-23",
+      "duration": 9,
+      "phase": "mep"
+    },
+    {
+      "id": "22PUSjaEiN5R",
+      "name": "Inspections of all MEP rough in",
+      "start": "2026-12-09",
+      "duration": 1,
+      "phase": "mep"
+    },
+    {
+      "id": "22PUPvUnDnHk",
+      "name": "Sheetrock Office & Framing",
+      "start": "2026-12-10",
+      "duration": 3,
+      "phase": "interior"
+    },
+    {
+      "id": "22PUPvayxSXf",
+      "name": "Set finish MEP trim out",
+      "start": "2026-12-10",
+      "duration": 4,
+      "phase": "interior"
+    },
+    {
+      "id": "22PUSka73Lvi",
+      "name": "Set HVAC equipment & bay ductwork",
+      "start": "2026-12-10",
+      "duration": 6,
+      "phase": "interior"
+    },
+    {
+      "id": "22PUSk6RBVqi",
+      "name": "Tape Top and Finsh gypboard",
+      "start": "2026-12-14",
+      "duration": 6,
+      "phase": "interior"
+    },
+    {
+      "id": "22PUPvtxryaL",
+      "name": "Flooring, Office",
+      "start": "2026-12-15",
+      "duration": 1,
+      "phase": "interior"
+    },
+    {
+      "id": "22PUPwSYMfJ4",
+      "name": "Equipment Startup",
+      "start": "2026-12-15",
+      "duration": 3,
+      "phase": "close"
+    },
+    {
+      "id": "22PUPxYke3iZ",
+      "name": "Fire Marshall / Occupancy",
+      "start": "2026-12-19",
+      "duration": 1,
+      "phase": "close"
+    },
+    {
+      "id": "22PUSkDw6jm2",
+      "name": "Paint office area",
+      "start": "2026-12-21",
+      "duration": 2,
+      "phase": "interior"
+    }
+  ],
+  "draws": [
+    {
+      "number": 1,
+      "amount": 20756.94,
+      "date": "2026-04-24",
+      "description": "Metal Building Package Deposit"
+    },
+    {
+      "number": 2,
+      "amount": 21000,
+      "date": "2026-06-08",
+      "description": "Demo & Haul Off"
+    },
+    {
+      "number": 3,
+      "amount": 29000,
+      "date": "2026-07-08",
+      "description": "Excavation, Trenching & Rebar"
+    },
+    {
+      "number": 4,
+      "amount": 30000,
+      "date": "2026-07-10",
+      "description": "Concrete Pour"
+    },
+    {
+      "number": 5,
+      "amount": 50000,
+      "date": "2026-08-01",
+      "description": "Erect Steel Building"
+    },
+    {
+      "number": 6,
+      "amount": 27270.81,
+      "date": "2026-08-08",
+      "description": "Metal Building Package Balance"
+    },
+    {
+      "number": 7,
+      "amount": 26368.86,
+      "date": "2026-08-15",
+      "description": "Overhead Bay Doors"
+    },
+    {
+      "number": 8,
+      "amount": 14412,
+      "date": "2026-08-18",
+      "description": "Glazing / Man Doors & Windows"
+    },
+    {
+      "number": 9,
+      "amount": 97449.99,
+      "date": "2026-09-12",
+      "description": "Framing & MEP Rough-In"
+    },
+    {
+      "number": 10,
+      "amount": 79739.5,
+      "date": "2026-09-26",
+      "description": "MEP Finish, Insulation & Drywall"
+    },
+    {
+      "number": 11,
+      "amount": 47337.09,
+      "date": "2026-10-16",
+      "description": "Finishes & Final Completion"
+    },
+    {
+      "number": 12,
+      "amount": 49259.47,
+      "date": "2026-10-17",
+      "description": "Retainage Release"
+    }
+  ],
+  "jobtread": {
+    "name": "Authentic Details",
+    "address": "5108 Balcones Woods Dr, Austin, TX 78759, USA",
+    "projectedPrice": 492594.66,
+    "scheduleTaskCount": 33
+  },
+  "changes": [
+    {
+      "id": "22PUPqVAxGEx",
+      "name": "Excavate new footing & place rebar and AB's",
+      "detail": "start 2026-08-21\u21922026-09-03; duration 14\u219234"
+    },
+    {
+      "id": "22PeLZ6rCRiE",
+      "name": "Geotech report",
+      "detail": "NEW start 2026-09-04 duration 11 phase site (near Excavate new footing & place rebar and AB's, \u03941d)"
+    },
+    {
+      "id": "22Pd85559xLs",
+      "name": "Recieve the building from Rino",
+      "detail": "name 'Recieve tthe building from Rino'\u2192'Recieve the building from Rino'"
+    },
+    {
+      "id": "22PeLZMyBXYT",
+      "name": "Structural Engi Mods",
+      "detail": "NEW start 2026-09-15 duration 13 phase struct (near Recieve the building from Rino, \u03945d)"
+    },
+    {
+      "id": "22PUPv3kfqkJ",
+      "name": "Stub up for Electrical",
+      "detail": "start 2026-08-25\u21922026-09-29"
+    },
+    {
+      "id": "22PUPvDpNyYt",
+      "name": "Trenching and setting floor drains",
+      "detail": "start 2026-08-25\u21922026-09-29"
+    },
+    {
+      "id": "22PeLZR435pU",
+      "name": "City Review of Mods",
+      "detail": "NEW start 2026-09-29 duration 8 phase site (near Stub up for Electrical, \u03940d)"
+    },
+    {
+      "id": "22Pd7k2zgBrw",
+      "name": "Anchor Bolts Validated",
+      "detail": "start 2026-09-04\u21922026-10-07"
+    },
+    {
+      "id": "22PU77DGHZGu",
+      "name": "Pour concrete with bolts",
+      "detail": "start 2026-09-04\u21922026-10-08"
+    },
+    {
+      "id": "22Pd843qS8AA",
+      "name": "Verify AB's after pour",
+      "detail": "start 2026-09-10\u21922026-10-12"
+    },
+    {
+      "id": "22PUPgiS7HzT",
+      "name": "Erect the building",
+      "detail": "start 2026-09-11\u21922026-10-13"
+    },
+    {
+      "id": "22PUPuG36Srz",
+      "name": "Setting of Bay Doors",
+      "detail": "start 2026-09-29\u21922026-11-04"
+    },
+    {
+      "id": "22PUPuJExwwJ",
+      "name": "Man Doors/Windows",
+      "detail": "start 2026-10-06\u21922026-11-04"
+    },
+    {
+      "id": "22PUPuKtzWTr",
+      "name": "Framing Walls",
+      "detail": "start 2026-10-06\u21922026-11-04"
+    },
+    {
+      "id": "22PUPumYG45k",
+      "name": "Hang Lights, Bay",
+      "detail": "start 2026-10-05\u21922026-11-04"
+    },
+    {
+      "id": "22PUPvQYiUnU",
+      "name": "Rough in Mechanical, Office & Bays",
+      "detail": "start 2026-10-25\u21922026-11-23"
+    },
+    {
+      "id": "22PUSjCyRWny",
+      "name": "Rough in Electrical at the office area",
+      "detail": "start 2026-10-25\u21922026-11-23"
+    },
+    {
+      "id": "22PUSjQdxzw5",
+      "name": "Rough in plumbing at bathroom and breakarea.",
+      "detail": "start 2026-10-25\u21922026-11-23"
+    },
+    {
+      "id": "22PUSjaEiN5R",
+      "name": "Inspections of all MEP rough in",
+      "detail": "start 2026-11-10\u21922026-12-09"
+    },
+    {
+      "id": "22PUPvUnDnHk",
+      "name": "Sheetrock Office & Framing",
+      "detail": "start 2026-11-11\u21922026-12-10"
+    },
+    {
+      "id": "22PUPvayxSXf",
+      "name": "Set finish MEP trim out",
+      "detail": "start 2026-11-22\u21922026-12-10"
+    },
+    {
+      "id": "22PUSka73Lvi",
+      "name": "Set HVAC equipment & bay ductwork",
+      "detail": "start 2026-11-11\u21922026-12-10; duration 18\u21926"
+    },
+    {
+      "id": "22PUSk6RBVqi",
+      "name": "Tape Top and Finsh gypboard",
+      "detail": "start 2026-11-15\u21922026-12-14"
+    },
+    {
+      "id": "22PUPvtxryaL",
+      "name": "Flooring, Office",
+      "detail": "start 2026-11-27\u21922026-12-15"
+    },
+    {
+      "id": "22PUPwSYMfJ4",
+      "name": "Equipment Startup",
+      "detail": "start 2026-11-27\u21922026-12-15"
+    },
+    {
+      "id": "22PUPxYke3iZ",
+      "name": "Fire Marshall / Occupancy",
+      "detail": "start 2026-12-01\u21922026-12-19"
+    },
+    {
+      "id": "22PUSkDw6jm2",
+      "name": "Paint office area",
+      "detail": "start 2026-11-22\u21922026-12-21"
+    }
+  ]
+}
